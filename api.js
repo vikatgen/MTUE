@@ -1,1 +1,0 @@
-// See tuleks linkida app.js asemel HTMLis et kasutada saaks.
