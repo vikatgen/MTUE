@@ -34,7 +34,7 @@ function openPanel() {
 	document.getElementById("addNewModal").style.display ="block";
 };
 
-fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627/7+10+18+19+22+28+30+31+35+36+37+39+41.3.1/all?startTime=2014&endTime=2014&dimensionAtObservation=allDimensions')
+fetch('https://cors-anywhere.herokuapp.com/http://andmebaas.stat.ee/sdmx-json/data/PA627/7+10+18+19+22+28+30+31+35+36+37+39+41.3.1/all?startTime=2014&endTime=2014&dimensionAtObservation=allDimensions')
 .then(response=>{
 	return response.json()
 })
