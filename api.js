@@ -5,8 +5,8 @@ const totalSumBox = document.getElementById("answer");
 const numberField = document.getElementById("tunnid");
 const openAddModal = document.getElementById("addNewButton");
 const addNewModal = document.getElementById("addNewModal");
+const addContent = document.getElementById("addContent");
 let totalSum = 0;
-console.log(totalSum)
 
 let occupations = {
 	96: { name: "Prügimees", rate: 0},
@@ -48,21 +48,18 @@ fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627/7+10+18+19+22+28+30+31+35+3
 	})
 
 	function addRow() {
-			konf = checkboxInput.checked ? 1.5 : 1;
-			sum = (occupations[objectKey].rate * numberField.value) * konf;
-			console.log(sum)
-			totalSum += sum;
-			totalSumBox.innerText = totalSum.toFixed(0);
-			// console.log(occupations[objectKey].rate);
-			// console.log(numberField.value);
-			// console.log(sum)
-			// document.getElementById("answer").innerHTML = totalSum.toFixed(1);
-		};
+		konf = checkboxInput.checked ? 1.5 : 1;
+		sum = (occupations[objectKey].rate * numberField.value) * konf;
+		totalSum += sum;
+		totalSumBox.innerText = totalSum.toFixed(0);
+		const newLiSum = document.createElement("li");
+		newLiSum.classList.add('flex', 'w-full', 'justify-center', 'bg-purple-600', 'rounded-lg', 'py-3', 'px-6', 'text-white', 'mb-2');
+		newLiSum.innerHTML = sum.toFixed(0) + " € " + occupations[objectKey].name;
+		addContent.appendChild(newLiSum);
+		document.getElementById("addNewModal").style.display ="none";
+	};
 
 	addButton.addEventListener('click', addRow)
-
-
-		
 
 	// nupp addEventListener('click', addRow)
 	// - konf (if lause) - inout.value ? 1.5 või 1
@@ -71,6 +68,7 @@ fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627/7+10+18+19+22+28+30+31+35+3
 	// - total =+ sum
 	// - muuda totalit HTMLis
 });
+
 
 
 
