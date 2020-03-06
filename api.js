@@ -42,8 +42,11 @@ fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627/7+10+18+19+22+28+30+31+35+3
 .then(data => {
 	data.structure.dimensions.observation[0].values.forEach((el, i) => {
 		objectKey = el.name.split(' ')[0]
+		console.log(objectKey);
 		key = i + ":0:0:0"
 		rate = data.dataSets[0].observations[key][0]
+		worker = occupations[objectKey].name;
+		console.log(worker)
 		occupations[objectKey].rate = rate;
 	})
 
@@ -53,8 +56,8 @@ fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627/7+10+18+19+22+28+30+31+35+3
 		totalSum += sum;
 		totalSumBox.innerText = totalSum.toFixed(0);
 		const newLiSum = document.createElement("li");
-		newLiSum.classList.add('flex', 'w-full', 'justify-center', 'bg-purple-600', 'rounded-lg', 'py-3', 'px-6', 'text-white', 'mb-2');
-		newLiSum.innerHTML = sum.toFixed(0) + " € " + occupations[objectKey].name;
+		newLiSum.classList.add('flex', 'w-full', 'justify-center', 'bg-gray-300', 'rounded-lg', 'py-3', 'px-6', 'text-gray-600', 'mb-2');
+		newLiSum.innerHTML = sum.toFixed(0) + " € " + worker;
 		addContent.appendChild(newLiSum);
 		document.getElementById("addNewModal").style.display ="none";
 	};
